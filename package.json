@@ -1,0 +1,15 @@
+{
+	"name": "zksafev2",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"nes.css": "^2.2.1",
+		"snarkjs": "0.5.0"
+	}
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>zksafe</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
+		<link rel="stylesheet" href="css/nes.min.css">
+		<link rel="stylesheet" href="css/zksafev2.css">
+	</head>
+	<body>
+		<style>
+			[v-cloak] {
+				display: none !important;
+			}
+		</style>
+		<script type="importmap">
+			{
+				"imports": {
+					"vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js",
+					"viem": "https://esm.sh/viem",
+					"viem/chains": "https://esm.sh/viem/chains"
+				}
+			}
+		</script>
+		<script src="./js/zk/snarkjs.js"></script>
+
+		<div id="titlePanel" style="margin: 2rem; display: flex; justify-content: space-between;">
+			<h2 class="topic-title">
+				<i class="nes-logo"></i>ZKSAFE
+			</h2>
+			<div style="display: flex;">
+				<div class="nes-select" style="width: 14rem; margin-right: 1rem;">
+					<select required @change="onSelectChain">
+						<option value="1">Ethereum</option>
+						<option value="10">Optimism</option>
+					</select>
+				</div>
+				<button type="button" class="nes-btn is-error" @click="onConnectBtn">{{ connect }}</button>
+			</div>
+		</div>
+		<br />
+
+		<div style="margin-left: auto; margin-right: auto; width: fit-content;">
+			<div id="addressPanel" style="margin-left: 2rem;">
+				<p>Safebox: <span class="nes-pointer mousehover" @click="copy('safebox')">{{ safeboxAddr }}</span>
+				<span v-if="needsActivate"> needs </span>
+				<span class="nes-text is-primary nes-pointer mousehover" v-if="needsActivate" @click="activate()">Activate</span>
+				</p>
+				<p>Owner: <span class="nes-pointer mousehover" @click="copy('owner')">{{ ownerAddr }}</span></p>
+			</div>
+			<br />
+
+			<div id="balancePanel" style="display: flex; width: fit-content;">
+				<div class="nes-container with-title is-rounded is-centered" style="width: 26rem; margin: 1rem;">
+					<p class="title">Safebox</p>
+					<table>
+						<tbody>
+							<tr class="nes-text" v-for="token of safeboxTokens">
+								<td style="text-align: left;">{{ token.symbol }}</td>
+								<td style="text-align: right; padding-right: 2rem;width: 100%;">{{ formatAmount(token) }}</td>
+								<td class="nes-text is-error nes-pointer" style="text-align: right;" @click="withdraw(token)">>></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="nes-container with-title is-rounded is-centered" style="width: 26rem; margin: 1rem;">
+					<p class="title">Owner</p>
+					<table>
+						<tbody>
+							<tr class="nes-text" v-for="token of ownerTokens">
+								<td class="nes-text is-success nes-pointer" style="text-align: left;" @click="deposit(token)"><<</td>
+								<td style="text-align: left; padding-left: 2rem; width: 100%;">{{ token.symbol }}</td>
+								<td style="text-align: right; ">{{ formatAmount(token) }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<p id="addTokenPanel" style="display: flex; justify-content: right; margin: 2rem;">
+				<span class="nes-pointer mousehover" @click="addToken()">+ token</span>
+			</p>	
+			<p style="display: flex; justify-content: right; margin: 2rem;">
+				
+			</p>
+		</div>
+
+		<dialog id="dialog-rounded" class="nes-dialog is-rounded">
+			<form method="dialog">
+				<p class="title">{{ title }}</p>
+				<p>{{ content }}</p>
+				<input type="text" class="nes-input" v-model="userInput" v-if="hasInput">
+				<menu class="dialog-menu">
+					<button class="nes-btn is-primary" @click="onConfirm()">Confirm</button>
+					<button class="nes-btn" style="margin-left: 2rem;" v-if="hasCancel">Cancel</button>
+				</menu>
+			</form>
+		</dialog>
+
+		<div id="balloon-tip">
+			<Transition name="slide-fade">
+				<p v-cloak class="nes-balloon from-right nes-pointer tip" v-if="show" @click="onClick">{{ content }}</p>
+			</Transition>
+		</div>
+
+		<footer>
+			<p>
+				<span>&copy;2025</span>
+				<a href="https://github.com/ZKSAFE" target="_blank">zksafe</a>
+				<a href="https://docs.zksafe.pro" target="_blank">docs</a>
+				<a href="https://x.com/ZKSAFE" target="_blank">x</a>
+				<span class="nes-pointer mousehover">recovery</span>
+			</p>
+		</footer>
+		<script type="module" src="js/main.js"></script>
+	</body>
+</html>

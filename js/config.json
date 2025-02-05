@@ -1,0 +1,60 @@
+{
+	"1": {
+		"chainId": "1",
+		"name": "Ethereum",
+		"nativeToken": "ETH",
+		"factoryAddr": "0x8528d5a340Bef2e50844CDABdFa21bC6B57c3982",
+		"zkpassAddr": "0x9802cBf6480FE2a0c69740Bc8008739DfF1E7CEF",
+		"tokens": [
+			{
+				"symbol": "USDT",
+				"address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+				"decimals": 6
+			},
+			{
+				"symbol": "USDC",
+				"address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+				"decimals": 6
+			},
+			{
+				"symbol": "DAI",
+				"address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+				"decimals": 18
+			},
+			{
+				"symbol": "HSK",
+				"address": "0xE7C6BF469e97eEB0bFB74C8dbFF5BD47D4C1C98a",
+				"decimals": 18
+			}
+		]
+	},
+	"10": {
+		"chainId": "10",
+		"name": "Optimism",
+		"nativeToken": "ETH",
+		"factoryAddr": "0x8528d5a340Bef2e50844CDABdFa21bC6B57c3982",
+		"zkpassAddr": "0x9802cBf6480FE2a0c69740Bc8008739DfF1E7CEF",
+		"tokens": [
+			{
+				"symbol": "USDC.e",
+				"address": "0x7f5c764cbc14f9669b88837ca1490cca17c31607",
+				"decimals": 6
+			},
+			{
+				"symbol": "USDC",
+				"address": "0x0b2c639c533813f4aa9d7837caf62653d097ff85",
+				"decimals": 6
+			},
+			{
+				"symbol": "USDT",
+				"address": "0x94b008aa00579c1307b0ef2c499ad98a8ce58e58",
+				"decimals": 6
+			},
+			{
+				"symbol": "OP",
+				"address": "0x4200000000000000000000000000000000000042",
+				"decimals": 18
+			}
+		]
+	}
+}
