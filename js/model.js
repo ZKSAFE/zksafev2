@@ -22,6 +22,8 @@ export async function reset(_chainInfo, _publicClient, _walletClient) {
 	publicClient = _publicClient
 	walletClient = _walletClient
 	
+	console.log('reset walletClient:', walletClient)
+	
 	ownerAddr = walletClient.account.address
 	
 	await getSafeboxAddr()

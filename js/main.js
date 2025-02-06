@@ -1,6 +1,6 @@
 import { createApp, ref, toRef } from 'vue'
 import * as viem from 'viem'
-import { mainnet, optimism } from 'viem/chains'
+import { mainnet, optimism, arbitrum, bsc, polygon } from 'viem/chains'
 import config from './config.json' with { type: "json" }
 import * as dialog from './dialog.js'
 import * as balloon from './balloon.js'
@@ -69,12 +69,21 @@ async function switchChain(e) {
 			break
 		case '10':
 			currChain = optimism
+			break	
+		case '42161':
+			currChain = arbitrum
+			break	
+		case '56':
+			currChain = bsc
+			break	
+		case '137':
+			currChain = polygon
 			break
 		default:
 			dialog.showError('ChainInfo error:' + e.target.value)
 			return
 	}
-	console.log('chainInfo:', chainInfo)
+	console.log('chainInfo:', chainInfo, 'currChain:', currChain)
 	currChain.info = chainInfo
 	await createConnect()
 }
@@ -119,14 +128,21 @@ async function createConnect() {
 				transport: viem.custom(window.ethereum)
 			})
 		}
+		
+		await window.ethereum.request({
+			method: "wallet_switchEthereumChain",
+			params: [{
+				chainId: '0x' + currChain.id.toString(16)
+			}]
+		})
 	} catch(e) {
 		dialog.showError('Connect wallet failed')
 		titlePanel.connect = 'Connect'
 		return
 	}
 
-	updateView()
 	await model.reset(currChain.info, publicClient, walletClient)
+	updateView()
 }
 
 

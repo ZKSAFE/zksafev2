@@ -7,6 +7,7 @@ export async function getProof(chainId, pwd, address, nonce, datahash) {
 	fullhash = (BigInt(fullhash) / 8n).toString() //must be 254b, not 256b
 
 	let input = [stringToHex(pwd), address, fullhash]
+	console.log('input:', input)
 	let data = await snarkjs.groth16.fullProve({in:input}, './js/zk/circuit_js/circuit.wasm', './js/zk/circuit_final.zkey')
 
 	const res = await snarkjs.groth16.verify(vKey, data.publicSignals, data.proof)
@@ -38,7 +39,7 @@ export async function getProof(chainId, pwd, address, nonce, datahash) {
 
 
 export function stringToHex(string) {
-	let hexStr = '';
+	let hexStr = '0x';
 	for (let i = 0; i < string.length; i++) {
 		let compact = string.charCodeAt(i).toString(16)
 		hexStr += compact

@@ -45,6 +45,8 @@ async function depositConfirm(input) {
 	console.log(num, targetToken.decimals)
 	let amount = viem.parseUnits(num.toString(), targetToken.decimals)
 	
+	console.log('depositConfirm model.walletClient:', model.walletClient)
+	
 	let hash
 	if (targetToken.address == '') {
 		hash = await model.walletClient.sendTransaction({ 

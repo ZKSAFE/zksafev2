@@ -24,7 +24,7 @@
 		</script>
 		<script src="./js/zk/snarkjs.js"></script>
 
-		<div id="titlePanel" style="margin: 2rem; display: flex; justify-content: space-between;">
+		<div v-cloak id="titlePanel" style="margin: 2rem; display: flex; justify-content: space-between;">
 			<h2 class="topic-title">
 				<i class="nes-logo"></i>ZKSAFE
 			</h2>
@@ -33,6 +33,9 @@
 					<select required @change="onSelectChain">
 						<option value="1">Ethereum</option>
 						<option value="10">Optimism</option>
+						<option value="42161">Arbitrum</option>
+						<option value="56">BSC</option>
+						<option value="137">Polygon</option>
 					</select>
 				</div>
 				<button type="button" class="nes-btn is-error" @click="onConnectBtn">{{ connect }}</button>
@@ -41,7 +44,7 @@
 		<br />
 
 		<div style="margin-left: auto; margin-right: auto; width: fit-content;">
-			<div id="addressPanel" style="margin-left: 2rem;">
+			<div v-cloak id="addressPanel" style="margin-left: 2rem;">
 				<p>Safebox: <span class="nes-pointer mousehover" @click="copy('safebox')">{{ safeboxAddr }}</span>
 				<span v-if="needsActivate"> needs </span>
 				<span class="nes-text is-primary nes-pointer mousehover" v-if="needsActivate" @click="activate()">Activate</span>
@@ -50,7 +53,7 @@
 			</div>
 			<br />
 
-			<div id="balancePanel" style="display: flex; width: fit-content;">
+			<div v-cloak id="balancePanel" style="display: flex; width: fit-content;">
 				<div class="nes-container with-title is-rounded is-centered" style="width: 26rem; margin: 1rem;">
 					<p class="title">Safebox</p>
 					<table>
@@ -77,12 +80,9 @@
 					</table>
 				</div>
 			</div>
-			<p id="addTokenPanel" style="display: flex; justify-content: right; margin: 2rem;">
+			<p v-cloak id="addTokenPanel" style="display: flex; justify-content: right; margin: 2rem;">
 				<span class="nes-pointer mousehover" @click="addToken()">+ token</span>
 			</p>	
-			<p style="display: flex; justify-content: right; margin: 2rem;">
-				
-			</p>
 		</div>
 
 		<dialog id="dialog-rounded" class="nes-dialog is-rounded">
@@ -109,7 +109,7 @@
 				<a href="https://github.com/ZKSAFE" target="_blank">zksafe</a>
 				<a href="https://docs.zksafe.pro" target="_blank">docs</a>
 				<a href="https://x.com/ZKSAFE" target="_blank">x</a>
-				<span class="nes-pointer mousehover">recovery</span>
+				<!-- <span class="nes-pointer mousehover">recovery</span> -->
 			</p>
 		</footer>
 		<script type="module" src="js/main.js"></script>
